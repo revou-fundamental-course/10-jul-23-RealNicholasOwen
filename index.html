@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator BMI</title>
+</head>
+<body>
+    <div id="initial-page">
+        <h2>Kalkulator BMI</h2>
+        <p>
+            Berat badan ideal adalah impian semua orang. Tidak hanya memiliki bentuk tubuh yang menunjang
+            penampilan, berat badan ideal juga menandakan kondisi tubuh yang sehat. Bagaimana denganmu?
+            Yuk, hitung sekarang di Kalkulator BMI.
+        </p>
+        <div class="container">
+            <form>
+                <p>
+                    <b>Jenis Kelamin</b>
+                    <br>
+                    <label>
+                    <input type="radio" id="pria" name="kelamin" value="Pria" required>
+                    <b>Pria</b>
+                    </label>
+                    <label>
+                    <input type="radio" id="wanita" name="kelamin" value="Wanita">
+                    <b>Wanita</b>
+                    </label>        
+                </p>
+                <p>
+                    <b>Berat Badan (Kg)</b>
+                    <br>
+                    <input type="number" id="berat" required>
+                </p>
+                <p>
+                    <b>Tinggi badan (cm)</b>
+                    <br>
+                    <input type="number" id="tinggi" required>
+                </p>
+                <!--saat tombol hitung ditekan, cek apakah semua data sudah diisi (valid) baru call functionnya, 
+                    return false adalah untuk mencegah refresh page saat submit-->
+                <input type="submit" class="hitung" value="Hitung BMI" onclick="if(this.form.checkValidity()){calculateBMI();return false;}">
+                <input type="reset">   
+            </form>
+        </div>
+        <p>
+            Keunggulan fitur
+            <br>
+            1. Menghitung berat badan
+            <br>
+            2. Menentukan kategori berat badan ideal atau tidak
+            <br>
+            3. Mempersiapkan program penurunan berat badan 
+        </p>
+        <p>
+            Kalkulator ini hanya boleh digunakan oleh orang dewasa (wanita hamil atau menyusui tidak boleh
+            mengandalkan pembacaan BMI ini) dan tidak ada tindakan yang harus diambil berdasarkan nilainya
+            selain berkonsultasi dengan orang yang memenuhi syarat seperti dokter.
+        </p>
+        <p>
+            Kalkulator akan memberi Anda gambaran tentang perbandingan berat badan Anda dengan nilai
+            umum. Ideks Massa Tubuh (BMI) dihitung sebagai berat badan Anda (dalam kilogram) dibagi
+            dengan kuadrat tinggi badan Anda (dalam meter) atau BMI = Kg/M<sup>2</sup>.
+        </p>
+    </div>
+
+    <!--display untuk underweight-->
+    <div id="berat-kurang" class="hidden">
+        <h2>Hasil</h2>
+        <div class="hasil">
+            <h4>Berat Badan Kurang</h3>
+            <h2 class="bmi">
+                bmi
+            </h2>
+            <p>Anda kekurangan berat badan</p>
+            <input type="button" class="link-button" value="Download Hasil BMI">
+        </div>
+        <p>Hasil BMI kurang dari 18.5.</p>
+        <p>
+            Anda berada dalam kategori underweight atau kekurangan berat badan.
+            <br>
+            Cara terbaik untuk menaikkan berat badan adalah dengan manambah
+            kalori makanan yang dikonsumsi dan berolahraga. Anda dianjurkan
+            untuk menaikkan berat badan hingga batas normal.
+        </p>
+        <input type="button" class="link-button" value="Konsultasi Ahli Gizi Via Aplikasi">
+        <input type="button" class="link-button" value="Registrasi Online Ahli Gizi">
+    </div>
+
+    <!--display untuk normal weight-->
+    <div id="berat-normal" class="hidden">
+        <h2>Hasil</h2>
+        <div class="hasil">
+            <h4>Berat Badan Normal</h3>
+            <h2 class="bmi" id="bmi">
+                bmi
+            </h2>
+            <p>Anda memiliki berat badan normal!</p>
+            <input type="button" class="link-button" value="Download Hasil BMI">
+        </div>
+        <p>Hasil BMI diantara 18.5 dan 25.</p>
+        <p>
+            Anda berada dalam kategori normal.
+            <br>
+            Tetap pertahankan berat badan Anda agar tubuh tetap sehat. Bila membutuhkan
+            saran untuk mempertahankan berat badan silahkan konsultasi dengan ahli gizi.
+        </p>
+        <input type="button" class="link-button" value="Konsultasi Ahli Gizi Via Aplikasi">
+        <input type="button" class="link-button" value="Registrasi Online Ahli Gizi">
+    </div>
+
+    <!--display untuk overweight-->
+    <div id="berat-lebih" class="hidden">
+        <h2>Hasil</h2>
+        <div class="hasil">
+            <h4>Berat Badan Lebih</h3>
+            <h2 class="bmi">
+                bmi
+            </h2>
+            <p>Anda memiliki berat badan berlebih</p>
+            <input type="button" class="link-button" value="Download Hasil BMI">
+        </div>
+        <p>Hasil BMI diantara 25 dan 30.</p>
+        <p>
+            Anda berada dalam kategori overweight atau berat badan berlebih.
+            <br>
+            Cara terbaik untuk menurunkan berat badan adalah dengan mengatur
+            kalori makanan yang dikonsumsi dan berolahraga. Anda dianjurkan
+            untuk menurunkan berat badan hingga batas normal.
+        </p>
+        <input type="button" class="link-button" value="Konsultasi Ahli Gizi Via Aplikasi">
+        <input type="button" class="link-button" value="Registrasi Online Ahli Gizi">
+    </div>
+    
+    <!--display untuk OB-->
+    <div id="berat-ob" class="hidden">
+        <h2>Hasil</h2>
+        <div class="hasil">
+            <h4>Berat Badan Obesitas</h3>
+            <h2 class="bmi">
+                bmi
+            </h2>
+            <p>Anda Obesitas</p>
+            <input type="button" class="link-button" value="Download Hasil BMI">
+        </div>
+        <p>Hasil BMI lebih dari 30.</p>
+        <p>
+            Anda berada dalam kategori obesitas atau kegemukan.
+            <br>
+            Cara terbaik untuk menurunkan berat badan adalah dengan mengatur
+            kalori makanan yang dikonsumsi dan berolahraga. Anda sangat dianjurkan
+            untuk menurunkan berat badan hingga batas normal.
+        </p>
+        <input type="button" class="link-button" value="Konsultasi Ahli Gizi Via Aplikasi">
+        <input type="button" class="link-button" value="Registrasi Online Ahli Gizi">
+    </div>
+    
+    <!--footer untuk underweight-->
+    <div id="footer-underweight" class="hidden">
+        <p>
+            BMI tidak sepenuhnya mewakili diagnosis menyeluruh untuk kesehatan tubuh dan resiko penyakit
+            seseorang. Jika memiliki kekhawatiran mengenai berat badan dan kesehatan anda, berkonsultasilah dengan dokter.
+        </p>
+        <div class="hasil">
+            <h4>Beberapa penyakit yang berasal dari kekurusan</h4>
+            <p>
+                Osteoporosis <br>
+                Mudah Sakit <br>
+                Anemia <br>
+                Pertumbuhan tidak optimal
+            </p>
+            <input type="button" class="link-button" value="Konsultasi Dokter Via Aplikasi">
+            <input type="button" class="link-button" value="Registrasi Online Sekarang">
+        </div>
+    </div>
+    
+    <!--footer untuk lainnya-->
+    <div id="footer-overweight" class="hidden">
+        <p>
+            BMI tidak sepenuhnya mewakili diagnosis menyeluruh untuk kesehatan tubuh dan resiko penyakit
+            seseorang. Jika memiliki kekhawatiran mengenai berat badan dan kesehatan anda, berkonsultasilah dengan dokter.
+        </p>
+        <div class="hasil">
+            <h4>Beberapa penyakit yang berasal dari kegemukan</h4>
+            <p>
+                Diabetes <br>
+                Hipertensi <br>
+                Sakit Jantung <br>
+                Osteoarthritis
+            </p>
+            <input type="button" class="link-button" value="Konsultasi Dokter Via Aplikasi">
+            <input type="button" class="link-button" value="Registrasi Online Sekarang">
+        </div>
+    </div>
+    <!--external files-->
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/script.js"></script>
+</body>
+</html>
